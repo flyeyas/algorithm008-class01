@@ -3,6 +3,14 @@ class Solution:
         if(len(s) != len(t)):
             return False
         
-        s = ''.join(sorted(s))
-        t = ''.join(sorted(t))
-        return s == t
+        sList = s.split('')
+        tList = t.split('')
+        counter = {}
+        for i in range(len(s)):
+            counter[sList[i]] += counter[sList[i]]
+            counter[tList[i]] -= counter[tList[i]]
+        
+        for key, num in counter:
+            if num != 0:
+                return False;
+        return True
