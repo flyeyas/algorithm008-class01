@@ -1,16 +1,19 @@
 class Solution:
+    class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if(len(s) != len(t)):
             return False
         
-        sList = s.split('')
-        tList = t.split('')
         counter = {}
         for i in range(len(s)):
-            counter[sList[i]] += counter[sList[i]]
-            counter[tList[i]] -= counter[tList[i]]
+            if s[i] not in counter:
+                counter[s[i]] = 0
+            if t[i] not in counter:
+                counter[t[i]] = 1
+            counter[s[i]] = counter[s[i]] + 1
+            counter[t[i]] = counter[t[i]] - 1
         
-        for key, num in counter:
+        for num in counter.items():
             if num != 0:
-                return False;
+                return False
         return True
