@@ -3,16 +3,11 @@ class Solution:
         if(len(s) != len(t)):
             return False
         
-        counter = {}
+        dic1 = [0]*26
         for i in range(len(s)):
-            if s[i] not in counter:
-                counter[s[i]] = 0
-            if t[i] not in counter:
-                counter[t[i]] = 1
-            counter[s[i]] = counter[s[i]] + 1
-            counter[t[i]] = counter[t[i]] - 1
-        
-        for num in counter.items():
+            dic1[ord(s[i])-ord('a')] += 1
+            dic1[ord(t[i])-ord('a')] -= 1
+        for num in dic1:
             if num != 0:
                 return False
         return True
